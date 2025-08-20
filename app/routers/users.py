@@ -1,11 +1,5 @@
-from fastapi import FastAPI, Depends, HTTPException,APIRouter
+from fastapi import  Depends,APIRouter
 from sqlalchemy.ext.asyncio import AsyncSession
-from enum import IntEnum
-from pydantic import BaseModel, Field
-from typing import Optional
-from fastapi.exceptions import HTTPException
-from contextlib import asynccontextmanager
-from app.models import Priority
 import app.service as service
 from ..database import get_db,init_db
 from ..schemas import UserCreate
