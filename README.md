@@ -1,31 +1,35 @@
 # FastAPI Crypto WebSocket
 
-Un projet **FastAPI** démontrant l’asynchronisation et les WebSockets pour suivre les prix des cryptomonnaies en temps réel via l’API publique Binance, avec Docker.
+A **FastAPI** project demonstrating asynchronous processing and WebSockets to track cryptocurrency prices in real-time via the Binance public API, with Docker support.
 
 ---
 
-## 🚀 Fonctionnalités
+## 🚀 Features
 
-- Connexion à plusieurs streams Binance en **temps réel** (`aggTrade`)  
-- Diffusion des données vers tous les clients connectés via WebSockets  
-- Gestion des clients connectés et des déconnexions  
-- Utilisation complète de **FastAPI async** pour un traitement non bloquant  
-- Base de données Postgresql initialisée automatiquement 
-- Conteneurisé avec **Docker Compose** pour un déploiement facile  
+- Connect to multiple Binance streams in **real-time** (`aggTrade`)  
+- Broadcast data to all connected clients via WebSockets  
+- Manage connected clients and handle disconnections  
+- Fully leverage **FastAPI async** for non-blocking processing  
+- Automatically initialize a PostgreSQL database  
+- Containerized with **Docker Compose** for easy deployment  
 
 ---
 
-## 🐳 Installation avec Docker
+## 🐳 Installation with Docker
 
-### Démarrage rapide :
+### Quick Start
 
 ```bash
 docker compose up --build
+
 ```
 
-##  Connexion WebSocket :
-Exemple avec websocat :
+## WebSocket Connection:
+Use the Python client _ws_client.py script:
 
+Update USERNAME and PASSWORD in the script.
+
+Run the client:
 ```bash
-websocat ws://localhost:8000/ws/crypto
+python python_ws_client.py
 ```

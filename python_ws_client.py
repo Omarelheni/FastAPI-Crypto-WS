@@ -29,10 +29,6 @@ async def ws_client(token: str):
     ) as websocket:
         print("🔗 Connecté au serveur WebSocket")
 
-
-        print("📤 Message envoyé")
-        print("En attente de messages..."
-              )
         # Boucle pour recevoir des messages
         while True:
             try:
