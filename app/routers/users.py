@@ -3,6 +3,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 import app.service as service
 from ..database import get_db,init_db
 from ..schemas import UserCreate
+import websockets
 
 router = APIRouter(prefix="/users",tags=["users"]
                    )
