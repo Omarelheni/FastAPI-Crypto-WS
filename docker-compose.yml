@@ -10,7 +10,7 @@ services:
     ports:
       - "5435:5432"
     volumes:
-      - postgres_data:/var/lib/postgresql/data
+      - postgres_data_fastapi:/var/lib/postgresql/data
 
   web:
     build: .
@@ -26,4 +26,4 @@ services:
       - db
 
 volumes:
-  postgres_data:
+  postgres_data_fastapi:

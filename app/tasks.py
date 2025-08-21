@@ -29,7 +29,7 @@ async def binance_ws_multi():
                 "timestamp": data["T"],
                 "is_buyer_maker": data["m"]
             }
-            
+            print(f"Received data for {stream_name}: {simplified}")
             await manager.broadcast(f"{stream_name} → {simplified}")
 
 
