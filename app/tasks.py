@@ -5,6 +5,8 @@ import asyncio
 import websockets
 import json 
 from .routers.coins import manager
+import redis.asyncio as redis
+
 
 load_dotenv()
 
@@ -12,11 +14,16 @@ symbols = ["bnbusdt", "btcusdt"]
 stream = "/".join([f"{s}@aggTrade" for s in symbols])
 url = f"wss://fstream.binance.com/stream?streams={stream}"
 
+REDIS_HOST = os.getenv("REDIS_HOST", "localhost")
+redis_client = redis.Redis(host=REDIS_HOST, port=6379, decode_responses=True)
+
+CHANNEL = "crypto"
+
+
 async def binance_ws_multi():
     async with websockets.connect(url) as ws:
         async for message in ws:
             msg = json.loads(message)
-            stream_name = msg["stream"]
             data = msg["data"]
             
             # Message compréhensible
@@ -28,7 +35,7 @@ async def binance_ws_multi():
                 "timestamp": data["T"],
                 "is_buyer_maker": data["m"]
             }
-            await manager.broadcast(data["s"],f"{stream_name} → {simplified}")
+            await redis_client.publish(CHANNEL, json.dumps(simplified))
 
 
 async def broadcast_task():
