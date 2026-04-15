@@ -6,7 +6,7 @@ API_URL = "http://localhost:8000"
 WS_URL = "ws://localhost:8000/ws/crypto"
 
 USERNAME = "omar@gmail.com"
-PASSWORD = "omar"
+PASSWORD = "password"
 
 # 🔑 Authentification pour récupérer le JWT
 async def login():

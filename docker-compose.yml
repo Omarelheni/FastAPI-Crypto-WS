@@ -15,7 +15,6 @@ services:
   web:
     build: .
     container_name: fastapi_app
-    command: fastapi dev main.py --host 0.0.0.0 --port 8000
     volumes:
       - .:/app
     ports:
@@ -24,6 +23,13 @@ services:
       - .env
     depends_on:
       - db
+  
+  adminer:
+    image: adminer
+    restart: on-failure:5
+    ports:
+      - 8084:8080
+
 
 volumes:
   postgres_data_fastapi:

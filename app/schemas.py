@@ -17,3 +17,11 @@ class UserUpdate(UserCreate):
 
 class User(UserCreate):
     id : int
+
+
+class WatchlistCreate(BaseModel):
+    name: str
+    symbols: list[str]
+
+    class Config:
+        orm_mode = True

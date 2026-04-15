@@ -1,4 +1,4 @@
-from sqlalchemy import create_engine, MetaData, Column, Integer, String, Table, ForeignKey, Enum
+from sqlalchemy import create_engine, MetaData, Column, Integer, String, Table, ForeignKey, Enum, JSON
 from sqlalchemy.orm import declarative_base, sessionmaker, relationship
 from enum import IntEnum
 from passlib.context import CryptContext
@@ -13,6 +13,7 @@ class User(Base):
     name = Column(String, index=True)
     password = Column(String)
     email = Column(String, unique=True, index=True)
+    prefered_symbols = Column(JSON)
 
     def set_password(self, plain_password: str):
         """Hash le mot de passe et le stocke dans l'objet."""
@@ -21,3 +22,4 @@ class User(Base):
     def verify_password(self, plain_password: str) -> bool:
         """Vérifie que le mot de passe correspond au hash."""
         return pwd_context.verify(plain_password, self.password)
+    
