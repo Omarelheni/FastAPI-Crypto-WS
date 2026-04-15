@@ -23,6 +23,16 @@ services:
       - .env
     depends_on:
       - db
+  
+  producer:
+    build: ./producer
+    container_name: producer
+    env_file:
+      - .env
+    depends_on:
+      - db
+      - redis
+    command: ["python", "producer.py"]
     
   redis:
     image: redis:latest
