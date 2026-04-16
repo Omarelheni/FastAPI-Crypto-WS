@@ -58,11 +58,18 @@ docker compose up --build
 
 Créez un fichier `.env` à la racine :
 ```env
-DATABASE_URL=postgresql+asyncpg://user:password@db:5432/cryptodb
+# Variables pour Postgres
+POSTGRES_USER=admin
+POSTGRES_PASSWORD=
+POSTGRES_DB=mydatabase
+POSTGRES_HOST=db        # correspond au nom du service dans docker-compose
+POSTGRES_PORT=5432
+SECRET_KEY=
+
 REDIS_HOST=redis
-SECRET_KEY=votre_cle_secrete_ultra_secure
-ALGORITHM=HS256
-ACCESS_TOKEN_EXPIRE_MINUTES=200
+# Variable utilisée par SQLAlchemy
+DATABASE_URL=
+
 ```
 
 ---
@@ -71,6 +78,7 @@ ACCESS_TOKEN_EXPIRE_MINUTES=200
 
 Pour tester la connexion en temps réel, un client Python est fourni. Il automatise le login et la connexion WebSocket.
 
+0.  **Créer un utilisateur** avec `add_user.py`
 1.  **Mise à jour des identifiants** dans `python_ws_client.py` (USERNAME et PASSWORD).
 2.  **Lancement du client** :
     ```bash
